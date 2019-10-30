@@ -1,0 +1,24 @@
+<h1>Welcome to your CookBook</h1>
+
+<h2>All your recipes</h2>
+<a href="/new" class="btn btn-success">Create new recipe</a>
+<ol>
+<% @recipes.each_with_index do |recipe, index| %>
+  <% if @recipes.empty? %>
+    <%= "😱 No recipe ! Please create one." %>
+  <% else %>
+  <li id="<%= index %>">
+    <form action="/mark" method="post">
+      <input type="hidden" name="id" value="<%= index %>">
+      <input type="submit" value="Déja testée : <%= tick = recipe.done? ? '✅' : '❌' %>" class="btn">
+    </form>
+    <h3><%= recipe.name %></h3>
+    <p><%= "#{recipe.description} (#{recipe.prep_time} - #{recipe.difficulty})" %></p>
+    <a href="/modify?id=<%= index %>" class="btn btn-primary">Modify recipe</a>
+    <a href="/delete?id=<%= index %>" class="btn btn-danger">Delete recipe</a>
+    <hr>
+  </li>
+  <% end %>
+<% end %>
+</ol>
+

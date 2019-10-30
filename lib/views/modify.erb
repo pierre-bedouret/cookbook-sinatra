@@ -1,0 +1,17 @@
+<h1>Modify a recipe</h1>
+
+<%= "#{@index + 1} - #{@recipe.name} : #{@recipe.description} (#{@recipe.prep_time} - #{@recipe.difficulty})" %>
+
+<form action="/modify_recipe" method="post">
+  <input type="hidden" name="id" value="<%= @index %>">
+  Actual name* :<br>
+  <input type="text" name="name" value="<%= @recipe.name %>"size="50" required><br>
+  Actual description :<br>
+  <textarea name="description" rows="10" cols="50"><%= @recipe.description %></textarea><br>
+  Actual preparation time :<br>
+  <input type="text" value="<%= @recipe.prep_time %>" name="prep_time" size="50"><br>
+  Actual difficulty :<br>
+  <input type="text" value="<%= @recipe.difficulty %>" name="difficulty" size="50"><br>
+  <br>
+  <input type="submit" value="Submit">
+</form>
